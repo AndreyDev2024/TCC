@@ -1,0 +1,7 @@
+# Arquivos e pastas ignorados pelo Git.
+.vscode/
+
+__pycache__/
+*.pyc
+
+.env
