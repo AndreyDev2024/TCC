@@ -10,6 +10,7 @@ def criar_funcionario(
     senha,
     tipo,
     setor,
+    empresa_id
 ):
     resultado_cpf = validar_cpf(cpf)
     if resultado_cpf != True:
@@ -43,7 +44,8 @@ def criar_funcionario(
         email,
         senha_ciptografada,
         tipo,
-        setor
+        setor,
+        empresa_id
         
     )
     return {"detail": f"Funcionário {nome} cadastrado com sucesso!"}

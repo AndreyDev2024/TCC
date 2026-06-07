@@ -1,1 +1,0 @@
-# Configuracoes gerais do projeto.

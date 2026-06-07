@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 class LogarFuncionario(BaseModel):   
-    cpf: int
+    cpf: str
     senha: str
 class LogarEmpresa(BaseModel):
-    cnpj: int
+    cnpj: str
     senha: str

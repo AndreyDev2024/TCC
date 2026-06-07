@@ -1,6 +1,6 @@
-from fastapi import APIRouter
-
-from schemas.auth_schema import LogarFuncionario, LogarEmpresa
+from fastapi import APIRouter, Depends
+from fastapi.security import OAuth2PasswordRequestForm
+from schemas.auth_schema import LogarFuncionario
 from services.auth_service import loginFuncionario, loginEmpresa
 
 auth_router = APIRouter(prefix='/auth', tags=['auth'])
@@ -13,8 +13,8 @@ async def logincomofuncionario(dados: LogarFuncionario):
     return reusultado
 
 @auth_router.post('/logar/empresa')
-async def logincomoempresa(dados: LogarEmpresa):
-    cnpj = dados.cnpj
-    senha = dados.senha
-    resultado = loginEmpresa(cnpj,senha)
+async def logincomoempresa(form_data: OAuth2PasswordRequestForm = Depends()):
+    cnpj = form_data.username
+    senha = form_data.password
+    resultado = loginEmpresa(cnpj, senha)
     return resultado

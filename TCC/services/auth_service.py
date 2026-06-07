@@ -26,13 +26,15 @@ def loginFuncionario(cpf,senha):
     access_token = criar_access_token({
         'id': funcionario[0],
         'nome': funcionario[1],
+        'tipo_login': 'funcionario',
         'tipo': funcionario[5],
-        'setor': funcionario[6]
-    })
+        'setor': funcionario[6],
+        'empresa_id': funcionario[7]
+})
     return{
         'mensagem': f'Bem vindo {funcionario[1]}',
-        'access token': access_token,
-        'token type': 'Bearer'
+        'access_token': access_token,
+        'token_type': 'Bearer'
     }
 def loginEmpresa(cnpj,senha):
     empresa = buscar_empresa_por_cnpj(cnpj)
@@ -46,9 +48,10 @@ def loginEmpresa(cnpj,senha):
     access_token = criar_access_token({
         'id': empresa[0],
         'nome': empresa[1],
-        'nicho': empresa[4]
+        'tipo_login': 'empresa',
+        'nicho': empresa[5]
     })
     return{ 'mensagem': f'Bem vindo {empresa[1]}',
-           'access token' : access_token,
-           'token type': 'Bearer' 
+           'access_token' : access_token,
+           'token_type': 'Bearer' 
     }

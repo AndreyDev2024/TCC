@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 class CriarFuncionario(BaseModel):
     nome: str
-    cpf: int
+    cpf: str
     email: str
     senha: str
     tipo: str
