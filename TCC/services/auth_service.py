@@ -29,7 +29,7 @@ def loginFuncionario(cpf,senha):
         'tipo_login': 'funcionario',
         'tipo': funcionario[5],
         'setor': funcionario[6],
-        'empresa_id': funcionario[7]
+        'empresa_id': funcionario[8]
 })
     return{
         'mensagem': f'Bem vindo {funcionario[1]}',

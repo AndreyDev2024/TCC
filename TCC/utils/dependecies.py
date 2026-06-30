@@ -1,10 +1,10 @@
 from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt, JWTError
-from dotenv import load_dotenv
 import os
+from utils.env_util import carregar_env
 
-load_dotenv()
+carregar_env()
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 ALGORITHM = os.getenv('ALGORITHM')
@@ -21,6 +21,9 @@ def pegar_empresa_logado(token: str = Depends(oauth2_schema)):
         return payload
     except JWTError:
         raise HTTPException(status_code=401, detail= 'Token invalido ou expirado')
+
+def usuario_logado(usuario = Depends(pegar_empresa_logado)):
+    return usuario
     
 def empresa_logada(usuario = Depends(pegar_empresa_logado)):
     if usuario.get('tipo_login') != 'empresa':
@@ -33,6 +36,7 @@ def empresa_logada(usuario = Depends(pegar_empresa_logado)):
 def funcionario_logado(usuario = Depends(pegar_empresa_logado)):
     if usuario.get('tipo_login') != 'funcionario':
         raise HTTPException(status_code=403, detail='Apenas usuarios podem utilizar essa funcao')
+    return usuario
     
 def admin_logado(usuario = Depends(funcionario_logado)):
     if usuario.get("tipo") != "adm":

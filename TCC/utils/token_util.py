@@ -1,9 +1,9 @@
 from jose import jwt
 from datetime import datetime, timedelta, timezone
-from dotenv import load_dotenv
 import os
+from utils.env_util import carregar_env
 
-load_dotenv()
+carregar_env()
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 ALGORITHM = os.getenv('ALGORITHM')

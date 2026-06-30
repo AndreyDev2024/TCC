@@ -1,1 +1,7 @@
-# Dependencias do projeto.
+fastapi
+uvicorn
+mysql-connector-python
+python-dotenv
+python-jose
+passlib[bcrypt]
+python-multipart

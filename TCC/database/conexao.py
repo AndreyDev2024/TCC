@@ -1,16 +1,10 @@
 import mysql.connector
-from dotenv import load_dotenv
 import os
+from utils.env_util import carregar_env
 
-load_dotenv()
+carregar_env()
 
 def conectar():
-    from dotenv import load_dotenv
-    import os
-
-    load_dotenv()
-
-    
     return mysql.connector.connect(
         host=os.getenv("DB_HOST"),
         user=os.getenv("DB_USER"),
